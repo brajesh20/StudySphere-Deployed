@@ -201,7 +201,7 @@ const UpdateNotes = () => {
     const fetchUpdate = async () => {
       const updateId = params.updateId;      
       const res = await fetch(
-        `http://localhost:3000/api/uploading/get/${updateId}`,
+        `${import.meta.env.VITE_API_URL}/api/uploading/get/${updateId}`,
         { credentials: "include" }
       );
 

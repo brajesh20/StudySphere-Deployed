@@ -15,7 +15,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   withCredentials: true,
   headers: {
     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -101,7 +101,7 @@ const Notes = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/api/notes/comments/${notes._id}/${commentId}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/comments/${notes._id}/${commentId}`,
         {
           method: "PUT",
           headers: {
@@ -144,7 +144,7 @@ const Notes = () => {
       return;
     try {
       const res = await fetch(
-        `http://localhost:3000/api/notes/comments/${notes._id}/${commentId}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/comments/${notes._id}/${commentId}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -242,7 +242,7 @@ const Notes = () => {
 
       setLoading(true);
       const res = await fetch(
-        `http://localhost:3000/api/uploading/get/${params.notesId}`
+        `${import.meta.env.VITE_API_URL}/api/uploading/get/${params.notesId}`
       );
       const data = await res.json();
 

@@ -22,7 +22,7 @@ import adminRoutes from './routes/admin.route.js'
 import { verifyToken } from './utils/verifyUser.js'
 
 mongoose
-  .connect(process.env.MONGO)
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log('Connected to DB')
   })
@@ -60,23 +60,6 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
-
-// No need for the cors middleware since we're handling CORS manually above
-// Remove or comment out this section:
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       console.error("Blocked by CORS:", origin);
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true,
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization", "credentials"],
-// };
-// app.use(cors(corsOptions));
 
 // Set Cross-Origin-Opener-Policy
 app.use((req, res, next) => {

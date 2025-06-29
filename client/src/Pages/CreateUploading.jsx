@@ -213,107 +213,6 @@ const CreateUploading = () => {
     setFile(e.target.files[0]);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     setLoading(true);
-  //     setError(null);
-
-  //     // Create FormData object for multipart/form-data submission
-  //     const form = new FormData();
-
-  //     // Add file if selected
-  //     if (file) {
-  //       console.log(
-  //         "Adding file to form data:",
-  //         file.name,
-  //         file.type,
-  //         file.size
-  //       );
-  //       form.append("file", file);
-  //     } else if (formData.fileUrl) {
-  //       // If we have a URL instead of a file
-  //       form.append("fileUrl", formData.fileUrl);
-  //     } else {
-  //       throw new Error("Please select a file or provide a file URL");
-  //     }
-
-  //     // Add all other form fields - with special handling for uploader
-  //     for (const key in formData) {
-  //       // Skip fileUrl if we already have a file
-  //       if (key === "fileUrl" && file) continue;
-
-  //       // Only add the uploader if it's a valid value (not undefined)
-  //       if (key === "uploader") {
-  //         if (formData[key] && formData[key] !== "undefined") {
-  //           form.append(key, formData[key]);
-  //         }
-  //       } else {
-  //         // Add all other fields normally
-  //         form.append(key, formData[key]);
-  //       }
-  //     }
-
-  //     // // Explicitly add the current user ID if available
-  //     // if (currentUser && currentUser._id) {
-  //     //   form.append("uploader", currentUser._id);
-  //     // }
-
-  //     // Log form data for debugging
-  //     console.log("Form data keys:", [...form.keys()]);
-  //     console.log(
-  //       "Form fields:",
-  //       Object.fromEntries(
-  //         [...form.entries()].filter(([key]) => key !== "file")
-  //       )
-  //     );
-
-  //     // Determine if we're creating or updating
-  //     const isUpdate = Boolean(params.updateId);
-  //     const endpoint = isUpdate
-  //       ? `http://localhost:3000/api/uploading/update/${params.updateId}`
-  //       : `http://localhost:3000/api/uploading/create`;
-
-  //     // Send the request
-  //     const res = await fetch(endpoint, {
-  //       method: "POST",
-  //       body: form,
-  //       credentials: "include",
-  //       // Don't manually set Content-Type here
-  //     });
-
-  //     // Handle non-JSON responses
-  //     if (!res.ok) {
-  //       const contentType = res.headers.get("content-type");
-  //       if (contentType && contentType.includes("application/json")) {
-  //         const errorData = await res.json();
-  //         throw new Error(
-  //           errorData.message || `Request failed with status ${res.status}`
-  //         );
-  //       } else {
-  //         const errorText = await res.text();
-  //         throw new Error(
-  //           `Request failed with status ${res.status}: ${errorText}`
-  //         );
-  //       }
-  //     }
-
-  //     const data = await res.json();
-
-  //     setLoading(false);
-  //     if (data.success === false) {
-  //       setError(data.message || "Unknown error occurred");
-  //     } else {
-  //       alert(`Note ${isUpdate ? "updated" : "created"} successfully `);
-  //       navigate(isUpdate ? `/notes/${params.updateId}` : "/");
-  //     }
-  //   } catch (err) {
-  //     console.error("Error in handleSubmit:", err);
-  //     setError(`Error: ${err.message || "Unknown error occurred"}`);
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -347,8 +246,8 @@ const CreateUploading = () => {
 
       const isUpdate = Boolean(params.updateId);
       const endpoint = isUpdate
-        ? `http://localhost:3000/api/uploading/update/${params.updateId}`
-        : `http://localhost:3000/api/uploading/create`;
+        ? `${import.meta.env.VITE_API_URL}/api/uploading/update/${params.updateId}`
+        : `${import.meta.env.VITE_API_URL}/api/uploading/create`;
 
       const res = await fetch(endpoint, {
         method: "POST",

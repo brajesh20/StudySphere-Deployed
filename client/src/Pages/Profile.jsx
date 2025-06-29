@@ -51,7 +51,7 @@ const Profile = () => {
       dispatch(updateUserStart());
 
       const res = await fetch(
-        `http://localhost:3000/api/user/update/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/user/update/${userId}`,
         {
           method: "POST",
           headers: {
@@ -88,7 +88,7 @@ const Profile = () => {
         setIsDeleting(true);
         dispatch(deleteUserStart());
         const res = await fetch(
-          `http://localhost:3000/api/user/delete/${userId}`,
+          `${import.meta.env.VITE_API_URL}/api/user/delete/${userId}`,
           {
             method: "DELETE",
             credentials: "include",
@@ -112,7 +112,7 @@ const Profile = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`http://localhost:3000/api/auth/signout`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signout`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -134,7 +134,7 @@ const Profile = () => {
     try {
       setShowUploadsErrors(false);
       const res = await fetch(
-        `http://localhost:3000/api/user/uploads/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/user/uploads/${userId}`,
         { credentials: "include" }
       );
       const data = await res.json();
@@ -155,7 +155,7 @@ const Profile = () => {
     try {
       setShowUploadsErrors(false);
       const res = await fetch(
-        `http://localhost:3000/api/notes/archived/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/archived/${userId}`,
         { credentials: "include" }
       );
       const data = await res.json();
@@ -174,7 +174,7 @@ const Profile = () => {
   const handleRemoveArchive = async (noteId) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/notes/remove-archive/${noteId}`,
+        `${import.meta.env.VITE_API_URL}/api/notes/remove-archive/${noteId}`,
         {
           method: "POST",
           headers: {
@@ -198,7 +198,7 @@ const Profile = () => {
     if (window.confirm("Are you sure you want to delete this note?")) {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/uploading/delete/${uploadingId}`,
+          `${import.meta.env.VITE_API_URL}/api/uploading/delete/${uploadingId}`,
           {
             method: "DELETE",
             credentials: "include",

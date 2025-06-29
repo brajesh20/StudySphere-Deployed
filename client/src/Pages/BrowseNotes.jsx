@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { FiEye } from "react-icons/fi";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   withCredentials: true,
   headers: {
     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -197,7 +197,7 @@ const BrowseNotes = () => {
   const fetchNotes = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/api/notes", {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`, {
         params: {
           search: search || "",
           subject: filters.subject,
