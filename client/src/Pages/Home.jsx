@@ -8,11 +8,11 @@ const Home = () => {
 
   const handleUploadClick = () => {
     // const isLoggedIn = !!localStorage.getItem("token");
-    //console.log(currentUser);
+    // console.log(currentUser);
     if (currentUser) {
       navigate("/uploading-notes");
     } else {
-      navigate("/signin");
+      navigate("/sign-in");
     }
   };
 

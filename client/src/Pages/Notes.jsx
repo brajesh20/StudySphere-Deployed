@@ -142,7 +142,6 @@ const Notes = () => {
   const deleteComment = async (commentId) => {
     if (!window.confirm("Are you sure you want to delete this comment?"))
       return;
-
     try {
       const res = await fetch(
         `http://localhost:3000/api/notes/comments/${notes._id}/${commentId}`,
@@ -509,7 +508,7 @@ const Notes = () => {
                                 </p>
                               </div>
                             </div>
-                            {comment.user == currentUser.id &&
+                            {comment.user == currentUser._id &&
                               comment.username != "Anonymous" && (
                                 <div className="flex gap-2">
                                   <button
