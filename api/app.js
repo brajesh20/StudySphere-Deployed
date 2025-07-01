@@ -21,8 +21,10 @@ import cors from 'cors'
 import adminRoutes from './routes/admin.route.js'
 import { verifyToken } from './utils/verifyUser.js'
 
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD
+const cnntString = `mongodb+srv://brajeshkumarshiv:${MONGO_PASSWORD}@devcluster.3v9ya20.mongodb.net/?retryWrites=true&w=majority&appName=DevCluster`
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(cnntString)
   .then(() => {
     console.log('Connected to DB')
   })
@@ -68,7 +70,7 @@ app.use((req, res, next) => {
 })
 
 const Port = process.env.PORT || 3000
-app.listen(Port, () => {
+app.listen(Port, '0.0.0.0', () => {
   console.log(`Server is running at port ${Port}`)
 })
 
