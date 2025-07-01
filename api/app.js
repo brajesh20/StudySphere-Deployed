@@ -21,10 +21,8 @@ import cors from 'cors'
 import adminRoutes from './routes/admin.route.js'
 import { verifyToken } from './utils/verifyUser.js'
 
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD
-const cnntString = `mongodb+srv://brajeshkumarshiv:${MONGO_PASSWORD}@devcluster.3v9ya20.mongodb.net/?retryWrites=true&w=majority&appName=DevCluster`
 mongoose
-  .connect(cnntString)
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log('Connected to DB')
   })
