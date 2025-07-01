@@ -31,7 +31,11 @@ mongoose
 const app = express()
 
 // CORS configuration - IMPORTANT: This must be before any other middleware
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://15.207.109.174', // public IP of frontend
+  'http://15.207.109.174:3000' // frontend if accessed via port
+]
 
 // First, set CORS headers manually for all responses, including error responses
 app.use((req, res, next) => {
