@@ -22,7 +22,6 @@ import adminRoutes from './routes/admin.route.js'
 import { verifyToken } from './utils/verifyUser.js'
 
 const cnntString = process.env.MONGO_URL
-//const cnntString = `mongodb+srv://brajeshkumarshiv:${MONGO_PASSWORD}@devcluster.3v9ya20.mongodb.net/?retryWrites=true&w=majority&appName=DevCluster`
 mongoose
   .connect(cnntString)
   .then(() => {
