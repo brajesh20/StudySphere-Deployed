@@ -17,7 +17,6 @@ import authRouter from './routes/auth.route.js'
 import cookieParser from 'cookie-parser'
 import uploadingRouter from './routes/uploading.route.js'
 import notesRouter from './routes/notes.route.js'
-import cors from 'cors'
 import adminRoutes from './routes/admin.route.js'
 
 mongoose
