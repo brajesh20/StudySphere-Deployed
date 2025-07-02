@@ -17,7 +17,9 @@ import authRouter from './routes/auth.route.js'
 import cookieParser from 'cookie-parser'
 import uploadingRouter from './routes/uploading.route.js'
 import notesRouter from './routes/notes.route.js'
+import cors from 'cors'
 import adminRoutes from './routes/admin.route.js'
+import { verifyToken } from './utils/verifyUser.js'
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -31,11 +33,8 @@ mongoose
 const app = express()
 
 // CORS configuration - IMPORTANT: This must be before any other middleware
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://15.207.109.174', // public IP of frontend
-  'http://15.207.109.174:3000' // frontend if accessed via port
-]
+const allowedOrigins = ['http://localhost:5173']
+
 // First, set CORS headers manually for all responses, including error responses
 app.use((req, res, next) => {
   const origin = req.headers.origin
@@ -53,6 +52,7 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     return res.status(200).end()
   }
+
   next()
 })
 

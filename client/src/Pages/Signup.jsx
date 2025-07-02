@@ -20,6 +20,7 @@ const Signup = () => {
 
     try {
       setLoading(true);
+      
       console.log(import.meta.env.VITE_API_URL);
       
       const res = await fetch(
