@@ -326,20 +326,24 @@ const UsersManagement = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleEditClick(user)}
-                          className="p-1 text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded transition-colors"
-                          title="Edit user"
-                        >
-                          <Pencil className="h-5 w-5" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteClick(user._id)}
-                          className="p-1 text-red-600 hover:text-red-900 hover:bg-red-50 rounded transition-colors"
-                          title="Delete user"
-                        >
-                          <Trash2 className="h-5 w-5" />
-                        </button>
+                        {user.role !== "admin" && (
+                          <button
+                            onClick={() => handleEditClick(user)}
+                            className="p-1 text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded transition-colors"
+                            title="Edit user"
+                          >
+                            <Pencil className="h-5 w-5" />
+                          </button>
+                        )}
+                        {user.role !== "admin" && (
+                          <button
+                            onClick={() => handleDeleteClick(user._id)}
+                            className="p-1 text-red-600 hover:text-red-900 hover:bg-red-50 rounded transition-colors"
+                            title="Delete user"
+                          >
+                            <Trash2 className="h-5 w-5" />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
