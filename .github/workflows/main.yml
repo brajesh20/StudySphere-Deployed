@@ -47,9 +47,11 @@ jobs:
       # ------------------------------
       # FRONTEND SETUP
       # ------------------------------
-      - name: Install frontend dependencies
+      - name: Clean npm cache & remove existing dependencies
         working-directory: ./client
-        run: npm ci
+        run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
 
       - name: Install frontend dependencies
         working-directory: ./client
