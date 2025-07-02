@@ -37,22 +37,17 @@ jobs:
         working-directory: ./api
         run: |
           touch .env
-          echo "${{ secrets.PROD_BACKEND_ENV }}" > .env
+          echo "${{ secrets.PROD_BACKEND_ENV }}" | tr '\r' '\n' > .env
 
       - name: Start backend with PM2
         working-directory: ./api
         run: |
-         /home/ubuntu/.nvm/versions/node/v22.17.0/bin/pm2 restart backend || /home/ubuntu/.nvm/versions/node/v22.17.0/bin/pm2 start app.js --name backend
+          /home/ubuntu/.nvm/versions/node/v22.17.0/bin/pm2 restart backend || \
+          /home/ubuntu/.nvm/versions/node/v22.17.0/bin/pm2 start app.js --name backend
 
       # ------------------------------
       # FRONTEND SETUP
       # ------------------------------
-      - name: Clean npm cache & remove existing dependencies
-        working-directory: ./client
-        run: |
-          rm -rf node_modules package-lock.json
-          npm cache clean --force
-
       - name: Install frontend dependencies
         working-directory: ./client
         run: npm install
@@ -61,7 +56,7 @@ jobs:
         working-directory: ./client
         run: |
           touch .env
-          echo "${{ secrets.PROD_FRONTEND_ENV }}" > .env
+          echo "${{ secrets.PROD_FRONTEND_ENV }}" | tr '\r' '\n' > .env
 
       - name: Build frontend
         working-directory: ./client
